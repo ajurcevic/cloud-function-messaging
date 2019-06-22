@@ -25,25 +25,25 @@ Example below we are watching for any update to the database performed in the /n
 */
 
 exports.sendNotifications = functions
-.region(region)
-.database
-.ref('notifications/{notiUid}')
-.onCreate((snap, context) => {
+    .region(region)
+    .database
+    .ref('notifications/{notiUid}')
+    .onCreate((snap, context) => {
 
-    const msg = snap.val();
+        const msg = snap.val();
 
-    //uncomment below lines to see values in the Function logs
-    //console.log('id', context.params.notiUid);
-    //console.log('message', msg);
+        //uncomment below lines to see values in the Function logs
+        //console.log('id', context.params.notiUid);
+        //console.log('message', msg);
 
-    let payload = {
-        notification: {
-            title: msg.title,
-            body: msg.message,
-            sound: "default",
-            badge: "1"
-        }
-    };
+        let payload = {
+            notification: {
+                title: msg.title,
+                body: msg.message,
+                sound: "default",
+                badge: "1"
+            }
+        };
 
-    return admin.messaging().sendToTopic(topic, payload);
-});
+        return admin.messaging().sendToTopic(topic, payload);
+    });
