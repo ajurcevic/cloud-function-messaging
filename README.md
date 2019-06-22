@@ -7,8 +7,8 @@
 TL;DR: The project uses Cloud Functions to perform Cloud Messaging with the help of Realtime Database. All Firebase.
 
 
-This Cloud Function example monitors a directory in the Firebase Realtime Database for newly created records.
-When the record is created the Cloud Function triggers the Cloud Messaging process and sends the message to the Topic, any device subscribed to that topic will receive a message.
+This Cloud Function example monitors the Firebase Realtime Database for new records.
+The Cloud Function then triggers the Cloud Messaging process and sends the message to the Topic, any device subscribed to that Topic will receive the message.
 
 Project is using the latest firebase-admin and function versions at the time of writing.
 
