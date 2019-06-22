@@ -1,23 +1,24 @@
 # Firebase Cloud Function Example
 
 👉 Introduction Cloud Functions: https://firebase.google.com/docs/functions
-
 👉 Introduction Cloud Messaging: https://firebase.google.com/docs/cloud-messaging
 
-The project uses Cloud Functions to perform Cloud Messaging with the help of Realtime Database. All Firebase.
+TL;DR: The project uses Cloud Functions to perform Cloud Messaging with the help of Realtime Database. All Firebase.
 
+ 
 This Cloud Function example monitors a directory in the Firebase Realtime Database for newly created records.
 When the record is created the Cloud Function triggers the Cloud Messaging process and sends the message to the Topic, any device subscribed to that topic will receive a message.
 
-We are using the latest firebase-admin and function versions.
+Project is using the latest firebase-admin and function versions at the time of writing.
 
-# Realtime Database
+## Realtime Database
+> What your database structure should look like:
 
-What the database structure looks like:
 ![realtime-database](/assets/realtime-database.png)
 
-## Subscibers devices
+## Subsciber devices
 > iOS / Android / Web, et al.
+
 > They need to subscribe to the same name you set the topic name.
 ```sh
 $ const topic = "custom-topic-name";
