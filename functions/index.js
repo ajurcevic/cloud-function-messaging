@@ -45,5 +45,12 @@ exports.sendNotifications = functions
             }
         };
 
-        return admin.messaging().sendToTopic(topic, payload);
+        return admin.messaging().sendToTopic(topic, payload)
+            .then(function (snapshot) {
+                //If message sent successful, save the timestamp
+                snap.ref.child('modified').set(context.timestamp);
+            })
+            .catch(function (error) {
+                console.log('Notification failed:', error);
+            });
     });
