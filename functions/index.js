@@ -1,5 +1,6 @@
 /*
-#   Written by: Adrian Jurcevic
+#   author: Adrian Jurcevic
+#   github: @ajurcevic
 #       create a cloud function that is triggered from new records 
 #       in the notification/ tree directory in Firebase realtime database
 #   using: firebase-admin 8.2.0 & firebase-functions 3.0.1
@@ -17,11 +18,11 @@ const topic = "custom-topic-name";
 
 /*
 onWrite(change, context)    = triggers when data is created, updated, or deleted in the Realtime Database.
-onCreate(change, context)   = triggers when new data is created in the Realtime Database.
-onUpdate(snapshot, context) = triggers when data is updated in the Realtime Database.
-onDelete(snapshot, context) = triggers when data is deleted from the Realtime Database.
+onCreate(snap, context)     = triggers when new data is created in the Realtime Database.
+onUpdate(change, context)   = triggers when data is updated in the Realtime Database.
+onDelete(snap, context)     = triggers when data is deleted from the Realtime Database.
 
-Example below we are watching for any update to the database performed in the /notifications/ location.
+The example we use below is watching for any newly created records to the database in the /notifications/ location.
 */
 
 exports.sendNotifications = functions
@@ -46,7 +47,7 @@ exports.sendNotifications = functions
         };
 
         return admin.messaging().sendToTopic(topic, payload)
-            .then(function (snapshot) {
+            .then(function () {
                 //If message sent successful, save the timestamp
                 snap.ref.child('modified').set(context.timestamp);
             })
